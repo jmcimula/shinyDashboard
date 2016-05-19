@@ -1,5 +1,5 @@
 library(shinydashboard)
-
+source("global.R")
 ui <- dashboardPage(
   dashboardHeader(title = "World Internet Report"),
   dashboardSidebar(
@@ -54,6 +54,14 @@ ui <- dashboardPage(
 
 server <- function(input, output) {
 
+  output$rawtable <- renderPrint({
+    
+    orig <- options(width = 1000)
+    print(tail(pkgData(1), input$maxrows))
+    options(orig)
+    
+  })
+  
 }
 
 shinyApp(ui, server)

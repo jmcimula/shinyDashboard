@@ -27,13 +27,18 @@ for (j in 1 : nrow(scrapData)){
                              penetration = scrapData[j+2,],
                              population = scrapData[j+7,],
                              non_users = scrapData[j+4,], 
-                             users_1year_change = scrapData[j+5,],
-                             internet_users_1year_change = scrapData[j+6,],
-                             population_1year_change = scrapData[j+7,]
+                             users_1year_chg = scrapData[j+5,],
+                             inte_usrs_1year_chg = scrapData[j+6,],
+                             pop_1year_chg = scrapData[j+7,]
                          )
     dynamic <- rbind(dynamic, static)
     
   }#if-condition
 }#Extraction columns scrapped
 
-View(dynamic)
+#View(dynamic)
+
+pkgData <- function (st){
+    st <- st
+    return (dynamic)
+}
