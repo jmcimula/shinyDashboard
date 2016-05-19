@@ -1,5 +1,6 @@
 library(shinydashboard)
 library(dplyr)
+library(bubbles)
 source("global.R")
 
 
@@ -30,8 +31,8 @@ ui <- dashboardPage(
               fluidRow( 
                 box( 
                   width = 8, status = "info", solidHeader = TRUE, 
-                  title = "Overview internet users/ Country" 
-                  #bubblesOutput("packagePlot", width = "100%", height = 600) 
+                  title = "Overview internet users/ Country", 
+                  bubblesOutput("packagePlot", width = "100%", height = 600) 
                 ), 
                 box( 
                   width = 4, status = "info", 
@@ -62,7 +63,18 @@ server <- function(input, output) {
   
 output$packageTable <- renderTable({ 
     print(head(select(pkgData(1),"Country" = Country,"Users" = Internet, "Perc. Users" = Penetration),20)) 
-  }, digits = 1) 
+  }, digits = 1)
+
+output$packagePlot <- renderBubbles({ 
+  if (nrow(pkgData(1)) == 0) 
+    return()  
+  
+  order <- unique(pkgData(1)$Country) 
+  df <- select(pkgData(1),Country,Penetration)
+ ## head(60) 
+  bubbles(df$Penetration, df$Country, key = df$Country) 
+}) 
+
   
 }
 
