@@ -62,7 +62,7 @@ server <- function(input, output) {
   })
   
 output$packageTable <- renderTable({ 
-    print(head(select(pkgData(1),"Country" = Country,"Users" = Internet, "Perc. Users" = Penetration),20)) 
+    print(head(select(pkgData(1),"Country" = Country,"Users" = Internet, "Penetration" = Penetration),20)) 
   }, digits = 1)
 
 output$packagePlot <- renderBubbles({ 
