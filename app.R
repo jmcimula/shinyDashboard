@@ -1,5 +1,8 @@
 library(shinydashboard)
+library(dplyr)
 source("global.R")
+
+
 ui <- dashboardPage(
   dashboardHeader(title = "World Internet Report"),
   dashboardSidebar(
@@ -15,12 +18,7 @@ ui <- dashboardPage(
            menuItem("Data Source", icon = icon("th"), tabName = "rawdata",badgeLabel = "new", badgeColor = "green") 
     ) 
     
-#sidebarMenu(
-#    menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
-#    menuItem("Data Source", icon = icon("th"), tabName = "source",badgeLabel = "new", badgeColor = "green")
-#)
-  
-  ),
+),
   dashboardBody(
     tabItems( 
       tabItem("dashboard", 
@@ -61,6 +59,10 @@ server <- function(input, output) {
     options(orig)
     
   })
+  
+output$packageTable <- renderTable({ 
+    print(head(select(pkgData(1),"Country" = Country,"Users" = Internet, "Perc. Users" = Penetration),20)) 
+  }, digits = 1) 
   
 }
 

@@ -22,14 +22,14 @@ for (j in 1 : nrow(scrapData)){
   
   if( str_detect(scrapData[j,], '[:alpha:]') == TRUE ) {#The cell contain strings
     static <- data.frame(
-                             country = scrapData[j,],
-                             int_users = scrapData[j+1,], 
-                             penetration = scrapData[j+2,],
-                             population = scrapData[j+7,],
-                             non_users = scrapData[j+4,], 
-                             users_1year_chg = scrapData[j+5,],
-                             inte_usrs_1year_chg = scrapData[j+6,],
-                             pop_1year_chg = scrapData[j+7,]
+                             Country = scrapData[j,],
+                             Internet = scrapData[j+1,], 
+                             Penetration = scrapData[j+2,],
+                             Population = scrapData[j+7,],
+                             Internetless = scrapData[j+4,], 
+                             Users_1year_chg = scrapData[j+5,],
+                             Int_usrs_1year_chg = scrapData[j+6,],
+                             Pop_1year_chg = scrapData[j+7,]
                          )
     dynamic <- rbind(dynamic, static)
     
