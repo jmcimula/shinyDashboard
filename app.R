@@ -31,7 +31,7 @@ ui <- dashboardPage(
               fluidRow( 
                 box( 
                   width = 8, status = "info", solidHeader = TRUE, 
-                  title = "Overview internet users/ Country", 
+                  title = "Overview internet Penetration of 50 first Countries", 
                   bubblesOutput("packagePlot", width = "100%", height = 600) 
                 ), 
                 box( 
@@ -70,7 +70,7 @@ output$packagePlot <- renderBubbles({
     return()  
   
   order <- unique(pkgData(1)$Country) 
-  df <- select(pkgData(1),Country,Penetration)
+  df <- head(select(pkgData(1),Country,Penetration),n = 50)
  ## head(60) 
   bubbles(df$Penetration, df$Country, key = df$Country) 
 }) 
