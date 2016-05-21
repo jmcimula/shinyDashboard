@@ -25,7 +25,7 @@ for (j in 1 : nrow(scrapData)){
                              Country = scrapData[j,],
                              Internet = scrapData[j+1,], 
                              Penetration = scrapData[j+2,],
-                             Population = scrapData[j+7,],
+                             Population = scrapData[j+3,],
                              Internetless = scrapData[j+4,], 
                              Users_1year_chg = scrapData[j+5,],
                              Int_usrs_1year_chg = scrapData[j+6,],
